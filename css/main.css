@@ -1,0 +1,23 @@
+.input_row {
+    display: flex;
+}
+.input_text {
+    flex: 1;
+}
+.input_unit {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 80px;
+}
+
+
+.result_revenue .result_detail dl {
+    border-bottom: 3px dotted;
+    height: 40px;
+}
+
+.result_workinghours .result_detail dl {
+    border-bottom: 3px dotted;
+    height: 70px;
+}
