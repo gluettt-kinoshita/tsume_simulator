@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/main.js" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>収益シミュレーション | atelierTsuMe</title>
+</head>
+
+<body onload="loaded();">
+
+    <header class="d-flex justify-content-center p-3 border-bottom border-1">
+        <div class="m-2"><a href=""><img src="img/logo1.webp" alt="ロゴ"></a></div>
+        <div class="m-2"><a href=""><img src="img/logo2.webp" alt="ロゴ"></a></div>
+    </header>
+    <main class="main">
+        <section class="main-header text-center">
+            <h1>収益シミュレーター</h1>
+            <p>atelierTsuMeでの収益を試算できます。<br />実際の収益は、ご利用状況などによって異なりますので、目安としてご利用ください。</p>
+        </section>
+
+        <section class="main-result">
+            <div class="main-result-inner result row">
+                <div class="result_revenue col-6 p-4">
+                    <div class="result_graph">
+                        <h2>収益シミュレーション結果</h2>
+                        <canvas id="revenue_canvas"></canvas>
+                        <div class="row">
+                            <div class="col-6 text-center"><span class="fs-3">250,000</span><span>円</span></div>
+                            <div class="col-6 text-center"><span class="fs-3">325,000</span><span>円</span></div>
+                        </div>
+                        <p>※想定年収＝売上-シェアサロン利用料-材料費</p>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="result_detail_switch d-flex justify-content-center">
+                                <input type="button" onclick="clickRevenueResult()"
+                                    class="btn btn-lg bg-dark text-white" value="詳細を確認する">
+                            </div>
+                            <div id="revenue_result" class="result_detail">
+                                <div class="result_detail_title">スタンダードプラン</div>
+                                <div class="text-center bg-primary text-white w-75 m-auto mt-4 mb-4">
+                                    固定費5万円＋利用料20％の場合
+                                </div>
+                                <p>スタンダードプランご契約時の想定収入</p>
+                                <p class="fs-1">325,000円</p>
+                                <dl class="row">
+                                    <dt class="col-6 fs-4">固定費</dt>
+                                    <dd class="col-6 text-end fs-4">50,000円</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-6 fs-4">利用料</dt>
+                                    <dd class="col-6 text-end fs-4">100,000円</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-6 fs-4">材料費</dt>
+                                    <dd class="col-6 text-end fs-4">25,000円</dd>
+                                </dl>
+                                <span>※材料費は当社平均値である5％にて算出</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="result_workinghours col-6 p-4">
+                    <div class="result_graph">
+                        <h2>勤務時間シミュレーション結果</h2>
+                        <canvas id="workinghours_canvas"></canvas>
+                        <div class="row">
+                            <div class="col-6 text-center"><span class="fs-3">176</span><span>時間</span></div>
+                            <div class="col-6 text-center"><span class="fs-3">100</span><span>時間</span></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="result_detail_switch d-flex justify-content-center">
+                                <input type="button" onclick="clickWorkinghoursResult()"
+                                    class="btn btn-lg bg-dark text-white" value="詳細を確認する">
+                            </div>
+                            <div id="workinghours_result" class="result_detail">
+                                <div class="result_detail_calc text-center">
+                                    <div class="calc_row row">
+                                        <div class="calc_col1 col-4">
+                                            <dl>
+                                                <dt class="fs-6">指名売上</dt>
+                                                <dd class="fs-4">50,000円</dd>
+                                            </dl>
+                                        </div>
+                                        <div class="calc_col2 col-2">➗</div>
+                                        <div class="calc_col3 col-4">
+                                            <dl>
+                                                <dt class="fs-6">客単価</dt>
+                                                <dd class="fs-4">10,000円</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="calc_row row">
+                                        <div class="calc_col1 col-4"></div>
+                                        <div class="calc_col2 col-2">🟰</div>
+                                        <div class="calc_col3 col-4">
+                                            <dl>
+                                                <dt class="fs-6">客数</dt>
+                                                <dd class="fs-4">50人</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="calc_row row">
+                                        <div class="calc_col1 col-4">
+                                            <dl>
+                                                <dt class="fs-6">客数</dt>
+                                                <dd class="fs-4">50人</dd>
+                                            </dl>
+                                        </div>
+                                        <div class="calc_col2 col-2">✖️</div>
+                                        <div class="calc_col3 col-4">
+                                            <dl>
+                                                <dt class="fs-6">接客時間／人</dt>
+                                                <dd class="fs-4">2時間</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div>※1客2時間と家庭</div>
+                                    <div>↓</div>
+                                    <div>
+                                        <p class="text-center bg-primary text-white w-75 m-auto mt-4 mb-4">
+                                            １ヶ月あたりの想定勤務時間
+                                        </p>
+                                        <span class="fs-1">100時間</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="d-flex justify-content-end">
+        <div>
+            <ul>
+                <li><a href="">atelierTsuMe</a></li>
+                <li><a href="">利用料</a></li>
+                <li><a href="">店舗情報</a></li>
+                <li><a href="">メッセージ</a></li>
+                <li><a href="">プライベートブース紹介</a></li>
+                <li><a href="">よくある質問</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>

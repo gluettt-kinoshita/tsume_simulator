@@ -60,8 +60,43 @@ function workinghours(asis, tobe) {
 
 
 
-
 function loaded() {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const uriage = urlParams.get('u'); // 指名売上
+    const tanka = urlParams.get('t'); // 平均客単価
+    const kyuryo = urlParams.get('k'); // 現在の給料
+    const zikan = urlParams.get('z'); // 現在の勤務時間
+    console.log(uriage);
+    console.log(tanka);
+    console.log(kyuryo);
+    console.log(zikan);
+
+
+
+
     revenue(250000, 325000);
     workinghours(176, 100);
+}
+
+
+let revenueDisplay = false;
+function clickRevenueResult() {
+    if (revenueDisplay) {
+        $('#revenue_result').fadeOut();
+    } else {
+        $('#revenue_result').fadeIn();
+    }
+    revenueDisplay = !revenueDisplay;
+}
+
+
+let workinghoursDisplay = false;
+function clickWorkinghoursResult() {
+    if (workinghoursDisplay) {
+        $('#workinghours_result').fadeOut();
+    } else {
+        $('#workinghours_result').fadeIn();
+    }
+    workinghoursDisplay = !workinghoursDisplay;
 }
