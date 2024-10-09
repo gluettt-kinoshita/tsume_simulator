@@ -1,24 +1,24 @@
-function createGraph(asis, tobe, canvasId) {
+function createGraph(asis, tobe, canvasId, revenue) {
     const ctx = document.getElementById(canvasId);
 
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['現在の給与', '想定収入'],
+            labels: revenue ? ['現在の給与', '想定収入'] : ['現在の勤務時間', '想定勤務時間'],
             datasets: [{
                 //label: '# of Votes',
                 labe: null,
                 data: [asis, tobe],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(200, 200, 200, 1)',
+                    asis > tobe ? 'rgb(118, 149, 255)' : 'rgb(255, 152, 116)',
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
+                    'rgba(200, 200, 200, 1)',
+                    asis > tobe ? 'rgb(118, 149, 255)' : 'rgb(255, 152, 116)',
                 ],
                 borderWidth: 1,
-                maxBarThickness: 60,
+                maxBarThickness: 100,
             }]
         },
         options: {
@@ -52,10 +52,10 @@ function createGraph(asis, tobe, canvasId) {
 }
 
 function revenue(asis, tobe) {
-    createGraph(asis, tobe, 'revenue_canvas');
+    createGraph(asis, tobe, 'revenue_canvas', true);
 }
 function workinghours(asis, tobe) {
-    createGraph(asis, tobe, 'workinghours_canvas');
+    createGraph(asis, tobe, 'workinghours_canvas', false);
 }
 
 
@@ -67,16 +67,45 @@ function loaded() {
     const tanka = urlParams.get('t'); // 平均客単価
     const kyuryo = urlParams.get('k'); // 現在の給料
     const zikan = urlParams.get('z'); // 現在の勤務時間
-    console.log(uriage);
-    console.log(tanka);
-    console.log(kyuryo);
-    console.log(zikan);
+    console.log(`指名売上：${uriage}`);
+    console.log(`平均客単価：${tanka}`);
+    console.log(`現在の給料：${kyuryo}`);
+    console.log(`現在の勤務時間：${zikan}`);
 
+    // 収益計算
 
+    // 勤務時間計算
+    calcAndDisplayWorkinghours(uriage, tanka, zikan);
 
+    // グラフに反映
+    revenue(kyuryo, 325000);
 
-    revenue(250000, 325000);
-    workinghours(176, 100);
+}
+
+// 施術時間
+const TREATMENT_TIME = 2; // 時間
+
+/**
+ * 勤務時間の計算と画面への表示
+ * @param {*} uriage 
+ * @param {*} tanka 
+ * @param {*} zikan 
+ */
+function calcAndDisplayWorkinghours(uriage, tanka, zikan) {
+    const ninzu = Math.floor(uriage / tanka);
+    const zikanAfter = ninzu * TREATMENT_TIME;
+
+    setText("#wh_zikan_before", zikan);
+    setText("#wh_zikan_after", zikanAfter);
+    setText("#wh_zikan_after2", zikanAfter);
+    setText("#wh_uriage_before", uriage);
+    setText("#wh_tanka", tanka);
+    setText("#wh_ninzu1", ninzu);
+    setText("#wh_ninzu2", ninzu);
+    setText("#wh_sekkyaku_zikan1", TREATMENT_TIME);
+    setText("#wh_sekkyaku_zikan2", TREATMENT_TIME);
+
+    workinghours(zikan, zikanAfter);
 }
 
 
@@ -99,4 +128,17 @@ function clickWorkinghoursResult() {
         $('#workinghours_result').fadeIn();
     }
     workinghoursDisplay = !workinghoursDisplay;
+}
+
+
+function setText(selector, text) {
+    $(selector).html(escapeHtml(text));
+}
+function escapeHtml(text) {
+    return text.toString()
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }

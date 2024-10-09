@@ -55,7 +55,8 @@ header img {
     margin-bottom: 60px;
 }
 .main-input-inner button {
-    background-color: rgba(192, 92, 167, 0.44);;
+    background-color: rgba(192, 92, 167, 0.44);
+    color: #ffffff;
 }
 
 .input_row {
@@ -90,6 +91,7 @@ header img {
 
 .result_detail {
     display: none;
+    margin: 60px 20px;
 }
 .result_detail_title {
     font-size: 40px;
@@ -108,6 +110,14 @@ header img {
 .result_workinghours .result_detail dl {
     border-bottom: 3px dotted;
     height: 70px;
+}
+.result_workinghours_estimated {
+    margin-top: 40px;
+}
+.result_workinghours_estimated_title {
+    background-color: #E78F81;
+    color: #ffffff;
+    border-radius: 4px;
 }
 
 
