@@ -38,11 +38,17 @@
             <div class="main-result-inner result row">
                 <div class="result_revenue col-6 p-4">
                     <div class="result_graph">
-                        <h2>収益シミュレーション結果</h2>
+                        <h2 class="mb-4">収益シミュレーション結果</h2>
                         <canvas id="revenue_canvas"></canvas>
                         <div class="row">
-                            <div class="col-6 text-center"><span class="fs-3">250,000</span><span>円</span></div>
-                            <div class="col-6 text-center"><span class="fs-3">325,000</span><span>円</span></div>
+                            <div class="col-6 text-center">
+                                <span class="fs-3" id="r_income_before"></span>
+                                <span>円</span>
+                            </div>
+                            <div class="col-6 text-center">
+                                <span class="fs-3" id="r_income_after"></span>
+                                <span>円</span>
+                            </div>
                         </div>
                         <p>※想定年収＝売上-シェアサロン利用料-材料費</p>
                     </div>
@@ -52,27 +58,41 @@
                                 <input type="button" onclick="clickRevenueResult()"
                                     class="btn btn-lg bg-dark text-white" value="詳細を確認する">
                             </div>
+                            <!-- スタンダードプラン -->
                             <div id="revenue_result" class="result_detail">
-                                <div class="result_detail_title">スタンダードプラン</div>
-                                <div class="text-center bg-primary text-white w-75 m-auto mt-4 mb-4">
-                                    固定費5万円＋利用料20％の場合
+                                <div class="result_revenue_detail_title"><span id="r_plan1_name1"></span></div>
+                                <div class="result_revenue_detail_condition">
+                                    月額<span id="r_plan1_tsukigaku1"></span>万円＋売上<span
+                                        id="r_plan1_uriage_ratio"></span>％の場合
                                 </div>
-                                <p>スタンダードプランご契約時の想定収入</p>
-                                <p class="fs-1">325,000円</p>
+                                <div><span id="r_plan1_name2"></span>ご契約時の想定収入</div>
+                                <p class="result_revenue_detail_income">
+                                    <span id="r_plan1_income"></span>
+                                    <span class="fs-4">円</span>
+                                </p>
                                 <dl class="row">
-                                    <dt class="col-6 fs-4">固定費</dt>
-                                    <dd class="col-6 text-end fs-4">50,000円</dd>
+                                    <dt class="col-6 fs-5 pt-1">月額</dt>
+                                    <dd class="col-6 text-end fs-4">
+                                        <span id="r_plan1_tsukigaku2"></span>
+                                        <span class="fs-6">円</span>
+                                    </dd>
                                 </dl>
                                 <dl class="row">
-                                    <dt class="col-6 fs-4">利用料</dt>
-                                    <dd class="col-6 text-end fs-4">100,000円</dd>
+                                    <dt class="col-6 fs-5 pt-1">HPB掲載料</dt>
+                                    <dd class="col-6 text-end fs-4">
+                                        <span id="r_plan1_hpb"></span>
+                                        <span class="fs-6">円</span>
+                                    </dd>
                                 </dl>
                                 <dl class="row">
-                                    <dt class="col-6 fs-4">材料費</dt>
-                                    <dd class="col-6 text-end fs-4">25,000円</dd>
+                                    <dt class="col-6 fs-5 pt-1">売上<span id="r_plan1_uriage_ratio2"></span>％</dt>
+                                    <dd class="col-6 text-end fs-4">
+                                        <span id="r_plan1_uriage_price"></span>
+                                        <span class="fs-6">円</span>
+                                    </dd>
                                 </dl>
-                                <span>※材料費は当社平均値である5％にて算出</span>
                             </div>
+                            <p class="fs-6">＊全てのプランに消費税、決済手数料、ポイントシステム料金が諸経費としてかかります。詳しくは直接お問い合わせください。</p>
                         </div>
                     </div>
                 </div>
@@ -81,13 +101,16 @@
 
                 <div class="result_workinghours col-6 p-4">
                     <div class="result_graph">
-                        <h2>勤務時間シミュレーション結果</h2>
+                        <h2 class="mb-4">勤務時間シミュレーション結果</h2>
                         <canvas id="workinghours_canvas"></canvas>
                         <div class="row">
-                            <div class="col-6 text-center"><span class="fs-3"
-                                    id="wh_zikan_before"></span><span>時間</span>
+                            <div class="col-6 text-center">
+                                <span class="fs-3" id="wh_zikan_before"></span>
+                                <span>時間</span>
                             </div>
-                            <div class="col-6 text-center"><span class="fs-3" id="wh_zikan_after"></span><span>時間</span>
+                            <div class="col-6 text-center">
+                                <span class="fs-3" id="wh_zikan_after"></span>
+                                <span>時間</span>
                             </div>
                         </div>
                     </div>
@@ -159,7 +182,7 @@
                                     </div>
                                     <div class="text-end">※1客<span id="wh_sekkyaku_zikan2"></span>時間と仮定</div>
                                     <div class="result_workinghours_estimated">
-                                        <div class="result_workinghours_estimated_title text-center w-75 m-auto">
+                                        <div class="result_workinghours_estimated_title">
                                             １ヶ月あたりの想定勤務時間
                                         </div>
                                         <div class="fs-1">
