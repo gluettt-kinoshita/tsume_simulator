@@ -4,7 +4,6 @@ const TREATMENT_TIME = 2; // 時間
 // { name: プラン名, tsukigaku: 月額（万円）, hpb: HPB掲載料（万円）, percent: 売上（％） }
 const PLAN_STANDARD = { name: "スタンダードプラン", tsukigaku: 5, hpb: 3, percent: 15 };
 const PLAN_LIGHT = { name: "ライトプラン", tsukigaku: 2, hpb: 3, percent: 25 };
-const PLAN_HURATTO = { name: "たまにふらっとプラン", tsukigaku: 1, hpb: 0, percent: 10 };
 
 function createGraph(asis, tobe, canvasId, revenue) {
     const ctx = document.getElementById(canvasId);
@@ -92,9 +91,8 @@ function calcAndDisplayRevenue(uriage, kyuryoBefore) {
 
     const standardIncome = calcRevenue(uriage, PLAN_STANDARD);
     const lightIncome = calcRevenue(uriage, PLAN_LIGHT);
-    const hurattoIncome = calcRevenue(uriage, PLAN_HURATTO);
 
-    const maximumIncome = Math.max(standardIncome, lightIncome, hurattoIncome);
+    const maximumIncome = Math.max(standardIncome, lightIncome);
 
     setText("#r_income_before", kyuryoBefore.toLocaleString());
     setText("#r_income_after", maximumIncome.toLocaleString());
