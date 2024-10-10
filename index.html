@@ -16,6 +16,7 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="js/main.js" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <title>収益シミュレーション | atelierTsuMe</title>
 </head>
@@ -23,8 +24,8 @@
 <body>
 
     <header class="d-flex justify-content-center p-3 border-bottom border-1">
-        <div class="m-2"><a href=""><img src="img/logo1.webp" alt="ロゴ"></a></div>
-        <div class="m-2"><a href=""><img src="img/logo2.webp" alt="ロゴ"></a></div>
+        <div class="m-2"><a href="/"><img src="img/logo1.webp" alt="ロゴ"></a></div>
+        <div class="m-2"><a href="/"><img src="img/logo2.webp" alt="ロゴ"></a></div>
     </header>
     <main class="main">
         <section class="main-header text-center">
@@ -37,7 +38,7 @@
                     <dt class="mb-1">◾️指名売上を入力してください。</dt>
                     <dd class="input_row">
                         <div class="input_text">
-                            <input class="w-100 form-control form-control-lg p-1">
+                            <input type="number" class="w-100 form-control form-control-lg p-1" id="in_uriage">
                         </div>
                         <div class="input_unit">
                             <span>円／月</span>
@@ -46,7 +47,7 @@
                     <dt class="mb-1">◾️平均客単価を入力してください。</dt>
                     <dd class="input_row">
                         <div class="input_text">
-                            <input class="w-100 form-control form-control-lg p-1">
+                            <input class="w-100 form-control form-control-lg p-1" id="in_tanka">
                         </div>
                         <div class="input_unit">
                             <span>円／月</span>
@@ -55,7 +56,7 @@
                     <dt class="mb-1">◾️現在の給料を入力してください。（総支給額）</dt>
                     <dd class="input_row">
                         <div class="input_text">
-                            <input class="w-100 form-control form-control-lg p-1">
+                            <input class="w-100 form-control form-control-lg p-1" id="in_kyuryo">
                         </div>
                         <div class="input_unit">
                             <span>円／月</span>
@@ -64,7 +65,7 @@
                     <dt class="mb-1">◾️現在の勤務時間を入力してください。</dt>
                     <dd class="input_row">
                         <div class="input_text">
-                            <input class="w-100 form-control form-control-lg p-1">
+                            <input class="w-100 form-control form-control-lg p-1" id="in_zikan">
                         </div>
                         <div class="input_unit">
                             <span>時間／月</span>
@@ -72,9 +73,7 @@
                     </dd>
                 </dl>
                 <div>
-                    <a href="">
-                        <button class="btn btn-lg w-100">シミュレーション結果を見る</button>
-                    </a>
+                    <button class="btn btn-lg w-100" onclick="toResult()">シミュレーション結果を見る</button>
                 </div>
             </div>
         </section>
@@ -82,12 +81,18 @@
     <footer class="d-flex justify-content-end">
         <div>
             <ul>
-                <li><a href="">atelierTsuMe</a></li>
-                <li><a href="">利用料</a></li>
-                <li><a href="">店舗情報</a></li>
-                <li><a href="">メッセージ</a></li>
-                <li><a href="">プライベートブース紹介</a></li>
-                <li><a href="">よくある質問</a></li>
+                <li><a href="https://info49506.wixsite.com/my-site" target="_blank"
+                        rel="noopener noreferrer">atelierTsuMe</a></li>
+                <li><a href="https://info49506.wixsite.com/my-site/%E5%88%A9%E7%94%A8%E6%96%99" target="_blank"
+                        rel="noopener noreferrer">利用料</a></li>
+                <li><a href="https://info49506.wixsite.com/my-site/%E5%BA%97%E8%88%97%E6%83%85%E5%A0%B1" target="_blank"
+                        rel="noopener noreferrer">店舗情報</a></li>
+                <li><a href="https://info49506.wixsite.com/my-site/%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8"
+                        target="_blank" rel="noopener noreferrer">メッセージ</a></li>
+                <li><a href="https://info49506.wixsite.com/my-site/%E8%A4%87%E8%A3%BD-%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E7%B4%B9%E4%BB%8B"
+                        target="_blank" rel="noopener noreferrer">プライベートブース紹介</a></li>
+                <li><a href="https://info49506.wixsite.com/my-site/%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E8%B3%AA%E5%95%8F"
+                        target="_blank" rel="noopener noreferrer">よくある質問</a></li>
             </ul>
         </div>
     </footer>

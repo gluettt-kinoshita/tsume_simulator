@@ -17,7 +17,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/main.js" charset="utf-8"></script>
+    <script src="js/result.js" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <title>収益シミュレーション | atelierTsuMe</title>
 </head>
@@ -25,8 +25,8 @@
 <body onload="loaded();">
 
     <header class="d-flex justify-content-center p-3 border-bottom border-1">
-        <div class="m-2"><a href=""><img src="img/logo1.webp" alt="ロゴ"></a></div>
-        <div class="m-2"><a href=""><img src="img/logo2.webp" alt="ロゴ"></a></div>
+        <div class="m-2"><a href="/"><img src="img/logo1.webp" alt="ロゴ"></a></div>
+        <div class="m-2"><a href="/"><img src="img/logo2.webp" alt="ロゴ"></a></div>
     </header>
     <main class="main">
         <section class="main-header text-center">
@@ -58,41 +58,77 @@
                                 <input type="button" onclick="clickRevenueResult()"
                                     class="btn btn-lg bg-dark text-white" value="詳細を確認する">
                             </div>
-                            <!-- スタンダードプラン -->
-                            <div id="revenue_result" class="result_detail">
-                                <div class="result_revenue_detail_title"><span id="r_plan1_name1"></span></div>
-                                <div class="result_revenue_detail_condition">
-                                    月額<span id="r_plan1_tsukigaku1"></span>万円＋売上<span
-                                        id="r_plan1_uriage_ratio"></span>％の場合
+                            <div id="revenue_result">
+                                <!-- スタンダードプラン -->
+                                <div class="result_detail">
+                                    <div class="result_revenue_detail_title"><span id="r_plan1_name1"></span></div>
+                                    <div class="result_revenue_detail_condition">
+                                        月額<span id="r_plan1_tsukigaku1"></span>万円＋売上<span
+                                            id="r_plan1_uriage_ratio"></span>％の場合
+                                    </div>
+                                    <div><span id="r_plan1_name2"></span>ご契約時の想定収入</div>
+                                    <p class="result_revenue_detail_income">
+                                        <span id="r_plan1_income"></span>
+                                        <span class="fs-4">円</span>
+                                    </p>
+                                    <dl class="row">
+                                        <dt class="col-6 fs-5 pt-1">月額</dt>
+                                        <dd class="col-6 text-end fs-4">
+                                            <span id="r_plan1_tsukigaku2"></span>
+                                            <span class="fs-6">円</span>
+                                        </dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-6 fs-5 pt-1">HPB掲載料</dt>
+                                        <dd class="col-6 text-end fs-4">
+                                            <span id="r_plan1_hpb"></span>
+                                            <span class="fs-6">円</span>
+                                        </dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-6 fs-5 pt-1">売上<span id="r_plan1_uriage_ratio2"></span>％</dt>
+                                        <dd class="col-6 text-end fs-4">
+                                            <span id="r_plan1_uriage_price"></span>
+                                            <span class="fs-6">円</span>
+                                        </dd>
+                                    </dl>
                                 </div>
-                                <div><span id="r_plan1_name2"></span>ご契約時の想定収入</div>
-                                <p class="result_revenue_detail_income">
-                                    <span id="r_plan1_income"></span>
-                                    <span class="fs-4">円</span>
-                                </p>
-                                <dl class="row">
-                                    <dt class="col-6 fs-5 pt-1">月額</dt>
-                                    <dd class="col-6 text-end fs-4">
-                                        <span id="r_plan1_tsukigaku2"></span>
-                                        <span class="fs-6">円</span>
-                                    </dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-6 fs-5 pt-1">HPB掲載料</dt>
-                                    <dd class="col-6 text-end fs-4">
-                                        <span id="r_plan1_hpb"></span>
-                                        <span class="fs-6">円</span>
-                                    </dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-6 fs-5 pt-1">売上<span id="r_plan1_uriage_ratio2"></span>％</dt>
-                                    <dd class="col-6 text-end fs-4">
-                                        <span id="r_plan1_uriage_price"></span>
-                                        <span class="fs-6">円</span>
-                                    </dd>
-                                </dl>
+                                <!-- ライトプラン -->
+                                <div id="revenue_result" class="result_detail">
+                                    <div class="result_revenue_detail_title"><span id="r_plan2_name1"></span></div>
+                                    <div class="result_revenue_detail_condition">
+                                        月額<span id="r_plan2_tsukigaku1"></span>万円＋売上<span
+                                            id="r_plan2_uriage_ratio"></span>％の場合
+                                    </div>
+                                    <div><span id="r_plan2_name2"></span>ご契約時の想定収入</div>
+                                    <p class="result_revenue_detail_income">
+                                        <span id="r_plan2_income"></span>
+                                        <span class="fs-4">円</span>
+                                    </p>
+                                    <dl class="row">
+                                        <dt class="col-6 fs-5 pt-1">月額</dt>
+                                        <dd class="col-6 text-end fs-4">
+                                            <span id="r_plan2_tsukigaku2"></span>
+                                            <span class="fs-6">円</span>
+                                        </dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-6 fs-5 pt-1">HPB掲載料</dt>
+                                        <dd class="col-6 text-end fs-4">
+                                            <span id="r_plan2_hpb"></span>
+                                            <span class="fs-6">円</span>
+                                        </dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-6 fs-5 pt-1">売上<span id="r_plan2_uriage_ratio2"></span>％</dt>
+                                        <dd class="col-6 text-end fs-4">
+                                            <span id="r_plan2_uriage_price"></span>
+                                            <span class="fs-6">円</span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <p class="fs-6">＊全てのプランに消費税、決済手数料、ポイントシステム料金が諸経費としてかかります。詳しくは直接お問い合わせください。</p>
                             </div>
-                            <p class="fs-6">＊全てのプランに消費税、決済手数料、ポイントシステム料金が諸経費としてかかります。詳しくは直接お問い合わせください。</p>
                         </div>
                     </div>
                 </div>
@@ -201,12 +237,18 @@
     <footer class="d-flex justify-content-end">
         <div>
             <ul>
-                <li><a href="">atelierTsuMe</a></li>
-                <li><a href="">利用料</a></li>
-                <li><a href="">店舗情報</a></li>
-                <li><a href="">メッセージ</a></li>
-                <li><a href="">プライベートブース紹介</a></li>
-                <li><a href="">よくある質問</a></li>
+                <li><a href="https://info49506.wixsite.com/my-site" target="_blank"
+                        rel="noopener noreferrer">atelierTsuMe</a></li>
+                <li><a href="https://info49506.wixsite.com/my-site/%E5%88%A9%E7%94%A8%E6%96%99" target="_blank"
+                        rel="noopener noreferrer">利用料</a></li>
+                <li><a href="https://info49506.wixsite.com/my-site/%E5%BA%97%E8%88%97%E6%83%85%E5%A0%B1" target="_blank"
+                        rel="noopener noreferrer">店舗情報</a></li>
+                <li><a href="https://info49506.wixsite.com/my-site/%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8"
+                        target="_blank" rel="noopener noreferrer">メッセージ</a></li>
+                <li><a href="https://info49506.wixsite.com/my-site/%E8%A4%87%E8%A3%BD-%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E7%B4%B9%E4%BB%8B"
+                        target="_blank" rel="noopener noreferrer">プライベートブース紹介</a></li>
+                <li><a href="https://info49506.wixsite.com/my-site/%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E8%B3%AA%E5%95%8F"
+                        target="_blank" rel="noopener noreferrer">よくある質問</a></li>
             </ul>
         </div>
     </footer>
