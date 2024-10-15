@@ -102,7 +102,7 @@ function calcAndDisplayRevenue(uriage, kyuryoBefore) {
     setText("#r_plan1_uriage_ratio", PLAN_STANDARD.percent);
     setText("#r_plan1_hpb", (PLAN_STANDARD.hpb * 10000).toLocaleString());
     setText("#r_plan1_uriage_ratio2", PLAN_STANDARD.percent);
-    setText("#r_plan1_uriage_price", (uriage * PLAN_STANDARD.percent / 100).toLocaleString());
+    setText("#r_plan1_uriage_price", Math.floor(uriage * PLAN_STANDARD.percent / 100).toLocaleString());
 
     // ライトプラン
     setText("#r_plan2_name1", PLAN_LIGHT.name);
@@ -113,7 +113,7 @@ function calcAndDisplayRevenue(uriage, kyuryoBefore) {
     setText("#r_plan2_uriage_ratio", PLAN_LIGHT.percent);
     setText("#r_plan2_hpb", (PLAN_LIGHT.hpb * 10000).toLocaleString());
     setText("#r_plan2_uriage_ratio2", PLAN_LIGHT.percent);
-    setText("#r_plan2_uriage_price", (uriage * PLAN_LIGHT.percent / 100).toLocaleString());
+    setText("#r_plan2_uriage_price", Math.floor(uriage * PLAN_LIGHT.percent / 100).toLocaleString());
 
     // グラフに反映
     revenue(kyuryoBefore, maximumIncome);
@@ -124,7 +124,8 @@ function calcAndDisplayRevenue(uriage, kyuryoBefore) {
  */
 function calcRevenue(uriage, plan) {
     // { name: プラン名, tsukigaku: 月額（万円）, hpb: HPB掲載料（万円）, percent: 売上（％） }
-    return uriage - (plan.tsukigaku * 10000) - (plan.hpb * 10000) - (uriage * plan.percent / 100);
+    const revenue = uriage - (plan.tsukigaku * 10000) - (plan.hpb * 10000) - (uriage * plan.percent / 100);
+    return Math.floor(revenue);
 }
 
 
@@ -141,8 +142,8 @@ function calcAndDisplayWorkinghours(uriage, tanka, zikan) {
     setText("#wh_zikan_before", zikan);
     setText("#wh_zikan_after", zikanAfter);
     setText("#wh_zikan_after2", zikanAfter);
-    setText("#wh_uriage_before", uriage);
-    setText("#wh_tanka", tanka);
+    setText("#wh_uriage_before", uriage.toLocaleString());
+    setText("#wh_tanka", tanka.toLocaleString());
     setText("#wh_ninzu1", ninzu);
     setText("#wh_ninzu2", ninzu);
     setText("#wh_sekkyaku_zikan1", TREATMENT_TIME);

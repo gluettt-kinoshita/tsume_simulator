@@ -44,33 +44,40 @@
                             <span>円／月</span>
                         </div>
                     </dd>
-                    <dt class="mb-1">◾️平均客単価を入力してください。</dt>
+                    <p id="in_uriage_err" class="input_error"></p>
+
+                    <dt class="mt-4 mb-1">◾️平均客単価を入力してください。</dt>
                     <dd class="input_row">
                         <div class="input_text">
-                            <input class="w-100 form-control form-control-lg p-1" id="in_tanka">
+                            <input type="number" class="w-100 form-control form-control-lg p-1" id="in_tanka">
                         </div>
                         <div class="input_unit">
                             <span>円／月</span>
                         </div>
                     </dd>
-                    <dt class="mb-1">◾️現在の給料を入力してください。（総支給額）</dt>
+                    <p id="in_tanka_err" class="input_error"></p>
+
+                    <dt class="mt-4 mb-1">◾️現在の給料を入力してください。（総支給額）</dt>
                     <dd class="input_row">
                         <div class="input_text">
-                            <input class="w-100 form-control form-control-lg p-1" id="in_kyuryo">
+                            <input type="number" class="w-100 form-control form-control-lg p-1" id="in_kyuryo">
                         </div>
                         <div class="input_unit">
                             <span>円／月</span>
                         </div>
                     </dd>
-                    <dt class="mb-1">◾️現在の勤務時間を入力してください。</dt>
+                    <p id="in_kyuryo_err" class="input_error"></p>
+
+                    <dt class="mt-4 mb-1">◾️現在の勤務時間を入力してください。</dt>
                     <dd class="input_row">
                         <div class="input_text">
-                            <input class="w-100 form-control form-control-lg p-1" id="in_zikan">
+                            <input type="number" class="w-100 form-control form-control-lg p-1" id="in_zikan">
                         </div>
                         <div class="input_unit">
                             <span>時間／月</span>
                         </div>
                     </dd>
+                    <p id="in_zikan_err" class="input_error"></p>
                 </dl>
                 <div>
                     <button class="btn btn-lg w-100" onclick="toResult()">シミュレーション結果を見る</button>

@@ -50,7 +50,7 @@
                                 <span>円</span>
                             </div>
                         </div>
-                        <p>※想定年収＝売上-シェアサロン利用料-材料費</p>
+                        <p></p>
                     </div>
                     <div>
                         <div>
@@ -59,8 +59,8 @@
                                     class="btn btn-lg bg-dark text-white" value="詳細を確認する">
                             </div>
                             <div id="revenue_result">
-                                <!-- スタンダードプラン -->
                                 <div class="result_detail">
+                                    <!-- スタンダードプラン -->
                                     <div class="result_revenue_detail_title"><span id="r_plan1_name1"></span></div>
                                     <div class="result_revenue_detail_condition">
                                         月額<span id="r_plan1_tsukigaku1"></span>万円＋売上<span
@@ -94,7 +94,7 @@
                                     </dl>
                                 </div>
                                 <!-- ライトプラン -->
-                                <div id="revenue_result" class="result_detail">
+                                <div class="result_detail">
                                     <div class="result_revenue_detail_title"><span id="r_plan2_name1"></span></div>
                                     <div class="result_revenue_detail_condition">
                                         月額<span id="r_plan2_tsukigaku1"></span>万円＋売上<span
@@ -133,8 +133,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="result_workinghours col-12 col-sm-6 p-4">
                     <div class="result_graph">
                         <h2 class="mb-4">勤務時間シミュレーション結果</h2>
@@ -156,74 +154,82 @@
                                 <input type="button" onclick="clickWorkinghoursResult()"
                                     class="btn btn-lg bg-dark text-white" value="詳細を確認する">
                             </div>
-                            <div id="workinghours_result" class="result_detail">
-                                <div class="result_detail_calc text-center">
-                                    <div class="calc_row row">
-                                        <div class="calc_col1 col-5">
-                                            <dl>
-                                                <dt class="fs-6">指名売上</dt>
-                                                <dd class="fs-3">
-                                                    <span id="wh_uriage_before"></span>
-                                                    <span class="fs-6">円</span>
-                                                </dd>
-                                            </dl>
+                            <div id="workinghours_result">
+                                <div class="result_detail">
+                                    <div class="text-center">
+                                        <div class="row">
+                                            <div class="calc_col col-5">
+                                                <dl>
+                                                    <dt class="fs-6">指名売上</dt>
+                                                    <dd class="fs-3">
+                                                        <span id="wh_uriage_before"></span>
+                                                        <span class="fs-6">円</span>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                            <div
+                                                class="calc_col col-2 d-flex justify-content-center align-items-center">
+                                                ➗
+                                            </div>
+                                            <div class="calc_col col-5">
+                                                <dl>
+                                                    <dt class="fs-6">客単価</dt>
+                                                    <dd class="fs-3">
+                                                        <span id="wh_tanka"></span>
+                                                        <span class="fs-6">円</span>
+                                                    </dd>
+                                                </dl>
+                                            </div>
                                         </div>
-                                        <div class="calc_col2 col-2 d-flex justify-content-center align-items-center">➗
+                                        <div class="row">
+                                            <div class="calc_col col-5"></div>
+                                            <div
+                                                class="calc_col col-2 d-flex justify-content-center align-items-center">
+                                                🟰
+                                            </div>
+                                            <div class="calc_col col-5">
+                                                <dl>
+                                                    <dt class="fs-6">客数</dt>
+                                                    <dd class="fs-3">
+                                                        <span id="wh_ninzu1"></span>
+                                                        <span class="fs-6">人</span>
+                                                    </dd>
+                                                </dl>
+                                            </div>
                                         </div>
-                                        <div class="calc_col3 col-5">
-                                            <dl>
-                                                <dt class="fs-6">客単価</dt>
-                                                <dd class="fs-3">
-                                                    <span id="wh_tanka"></span>
-                                                    <span class="fs-6">円</span>
-                                                </dd>
-                                            </dl>
+                                        <div class="row">
+                                            <div class="calc_col col-5">
+                                                <dl>
+                                                    <dt class="fs-6">客数</dt>
+                                                    <dd class="fs-3">
+                                                        <span id="wh_ninzu2"></span>
+                                                        <span class="fs-6">人</span>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                            <div
+                                                class="calc_col col-2 d-flex justify-content-center align-items-center">
+                                                ✖️
+                                            </div>
+                                            <div class="calc_col col-5">
+                                                <dl>
+                                                    <dt class="fs-6">接客時間／人</dt>
+                                                    <dd class="fs-3">
+                                                        <span id="wh_sekkyaku_zikan1"></span>
+                                                        <span class="fs-6">時間</span>
+                                                    </dd>
+                                                </dl>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="calc_row row">
-                                        <div class="calc_col1 col-5"></div>
-                                        <div class="calc_col2 col-2 d-flex justify-content-center align-items-center">🟰
-                                        </div>
-                                        <div class="calc_col3 col-5">
-                                            <dl>
-                                                <dt class="fs-6">客数</dt>
-                                                <dd class="fs-3">
-                                                    <span id="wh_ninzu1"></span>
-                                                    <span class="fs-6">人</span>
-                                                </dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="calc_row row">
-                                        <div class="calc_col1 col-5">
-                                            <dl>
-                                                <dt class="fs-6">客数</dt>
-                                                <dd class="fs-3">
-                                                    <span id="wh_ninzu2"></span>
-                                                    <span class="fs-6">人</span>
-                                                </dd>
-                                            </dl>
-                                        </div>
-                                        <div class="calc_col2 col-2 d-flex justify-content-center align-items-center">✖️
-                                        </div>
-                                        <div class="calc_col3 col-5">
-                                            <dl>
-                                                <dt class="fs-6">接客時間／人</dt>
-                                                <dd class="fs-3">
-                                                    <span id="wh_sekkyaku_zikan1"></span>
-                                                    <span class="fs-6">時間</span>
-                                                </dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="text-end">※1客<span id="wh_sekkyaku_zikan2"></span>時間と仮定</div>
-                                    <div class="result_workinghours_estimated">
-                                        <div class="result_workinghours_estimated_title">
-                                            １ヶ月あたりの想定勤務時間
-                                        </div>
-                                        <div class="fs-1">
-                                            <span id="wh_zikan_after2"></span>
-                                            <span class="fs-4 ml-2">時間</span>
+                                        <div class="text-end">※1客<span id="wh_sekkyaku_zikan2"></span>時間と仮定</div>
+                                        <div class="result_workinghours_estimated">
+                                            <div class="result_workinghours_estimated_title">
+                                                １ヶ月あたりの想定勤務時間
+                                            </div>
+                                            <div class="result_workinghours_estimated_hour">
+                                                <span id="wh_zikan_after2"></span>
+                                                <span class="fs-4 ml-2">時間</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

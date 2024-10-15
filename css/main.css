@@ -6,11 +6,11 @@ body {
 }
 
 h1 {
-    font-size: 26px;
+    font-size: 28px;
 }
 
 h2 {
-    font-size: 18px;
+    font-size: 22px;
 }
 
 /* ヘッダー */
@@ -81,7 +81,7 @@ header img {
 
 .input_row {
     display: flex;
-    margin-bottom: 24px;
+    margin-bottom: 0px;
 }
 .input_text {
     flex: 1;
@@ -91,6 +91,10 @@ header img {
     justify-content: flex-end;
     align-items: flex-end;
     width: 72px;
+}
+
+.input_error {
+    color: red;
 }
 
 
@@ -107,16 +111,37 @@ header img {
     text-align: center;
     height: 360px;
 }
+@media (max-width: 540px) {
+    .result_graph {
+        height: auto;
+        margin-bottom: 20px;
+    }
+}
 
-
+#revenue_result {
+    display: none;
+}
+#workinghours_result {
+    display: none;
+}
 .result_detail {
-    /* display: none; */
     margin: 60px 20px;
+}
+@media (max-width: 540px) {
+    .result_detail {
+        margin: 40px 10px;
+    }
 }
 .result_revenue_detail_title {
     font-size: 40px;
     text-align: center;
 }
+@media (max-width: 540px) {
+    .result_revenue_detail_title {
+        font-size: 32px;
+    }
+}
+
 .result_revenue_detail_condition {
     background-color: rgba(192, 92, 167, 0.44);
     color: #ffffff;
@@ -129,6 +154,11 @@ header img {
 .result_revenue_detail_income {
     font-size: 60px;
     text-align: center;
+}
+@media (max-width: 540px) {
+    .result_revenue_detail_income {
+        font-size: 40px;
+    }
 }
 
 .result_detail_switch input {
@@ -155,6 +185,23 @@ header img {
     margin: auto;
     padding: 4px;
     text-align: center;
+}
+.result_workinghours_estimated_hour {
+    font-size: 60px;
+}
+@media (max-width: 540px) {
+    .result_workinghours_estimated_hour {
+        font-size: 40px;
+    }
+}
+
+.calc_col dd {
+    white-space: nowrap
+}
+@media (max-width: 540px) {
+    .calc_col {
+        padding: 0;
+    }
 }
 
 
