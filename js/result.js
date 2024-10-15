@@ -17,12 +17,8 @@ function createGraph(asis, tobe, canvasId, revenue) {
                 labe: null,
                 data: [asis, tobe],
                 backgroundColor: [
-                    'rgba(200, 200, 200, 1)',
-                    asis > tobe ? 'rgb(118, 149, 255)' : 'rgb(255, 152, 116)',
-                ],
-                borderColor: [
-                    'rgba(200, 200, 200, 1)',
-                    asis > tobe ? 'rgb(118, 149, 255)' : 'rgb(255, 152, 116)',
+                    'rgba(220, 220, 220, 1)',
+                    asis > tobe ? 'rgba(88, 111, 223, 0.7)' : 'rgba(192, 92, 167, 0.44)',
                 ],
                 borderWidth: 1,
                 maxBarThickness: 100,

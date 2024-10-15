@@ -58,7 +58,7 @@ header img {
 /* シミュレーション入力 */
 .main-input {
     width: 100vw;
-    background-color: #e3e3e3;
+    background-color: rgb(249, 248, 245);
 }
 .main-input-inner {
     margin: auto;
@@ -118,7 +118,7 @@ header img {
     text-align: center;
 }
 .result_revenue_detail_condition {
-    background-color: #E78F81;
+    background-color: rgba(192, 92, 167, 0.44);
     color: #ffffff;
     border-radius: 4px;
     width: 75%;
@@ -148,7 +148,7 @@ header img {
     margin-top: 40px;
 }
 .result_workinghours_estimated_title {
-    background-color: #E78F81;
+    background-color: rgba(192, 92, 167, 0.44);
     color: #ffffff;
     border-radius: 4px;
     width: 75%;
