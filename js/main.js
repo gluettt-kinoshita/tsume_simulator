@@ -8,6 +8,8 @@ function toResult() {
     const kyuryo = $("#in_kyuryo").val();
     const zikan = $("#in_zikan").val();
 
+    const planLate = $("#plan_late").prop("checked");
+
     // 入力チェック
     let error = !Validator.required("#in_uriage");
     error |= !Validator.required("#in_tanka");
@@ -18,7 +20,7 @@ function toResult() {
         return;
     }
 
-    location.href = `result.html?u=${uriage}&t=${tanka}&k=${kyuryo}&z=${zikan}`;
+    location.href = `result.html?u=${uriage}&t=${tanka}&k=${kyuryo}&z=${zikan}${planLate ? "&p=late" : ""}`;
 }
 
 const Validator = {

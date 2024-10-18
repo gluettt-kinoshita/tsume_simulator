@@ -35,7 +35,7 @@
         <section class="main-input">
             <div class="main-input-inner">
                 <dl class="w-100">
-                    <dt class="mb-1">◾️指名売上を入力してください。</dt>
+                    <dt class="mb-1">◾️期待される指名売上を入力してください。</dt>
                     <dd class="input_row">
                         <div class="input_text">
                             <input type="number" class="w-100 form-control form-control-lg p-1" id="in_uriage">
@@ -46,7 +46,7 @@
                     </dd>
                     <p id="in_uriage_err" class="input_error"></p>
 
-                    <dt class="mt-4 mb-1">◾️平均客単価を入力してください。</dt>
+                    <dt class="mt-4 mb-1">◾️想定される平均客単価を入力してください。</dt>
                     <dd class="input_row">
                         <div class="input_text">
                             <input type="number" class="w-100 form-control form-control-lg p-1" id="in_tanka">
@@ -79,6 +79,12 @@
                     </dd>
                     <p id="in_zikan_err" class="input_error"></p>
                 </dl>
+                <div class="main-input-plan">
+                    <div class="form-check">
+                        <input class="form-check-input" id="plan_late" class="checkbox" type="checkbox">
+                        <label class="form-check-label" for="plan_late">レイトプラン（17時〜24時のみ利用のプラン）を含む</label>
+                    </div>
+                </div>
                 <div>
                     <button class="btn btn-lg w-100" onclick="toResult()">シミュレーション結果を見る</button>
                 </div>

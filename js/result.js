@@ -4,6 +4,7 @@ const TREATMENT_TIME = 2; // 時間
 // { name: プラン名, tsukigaku: 月額（万円）, hpb: HPB掲載料（万円）, percent: 売上（％） }
 const PLAN_STANDARD = { name: "スタンダードプラン", tsukigaku: 5, hpb: 3, percent: 15 };
 const PLAN_LIGHT = { name: "ライトプラン", tsukigaku: 2, hpb: 3, percent: 25 };
+const PLAN_LATE = { name: "レイトプラン", tsukigaku: 1.5, hpb: 1.5, percent: 25 };
 
 function createGraph(asis, tobe, canvasId, revenue) {
     const ctx = document.getElementById(canvasId);
@@ -70,25 +71,38 @@ function loaded() {
     const tanka = parseInt(urlParams.get('t')); // 平均客単価
     const kyuryo = parseInt(urlParams.get('k')); // 現在の給料
     const zikan = parseInt(urlParams.get('z')); // 現在の勤務時間
+    const plan = urlParams.get('p'); // プラン
+    const containLatePlan = plan && plan.indexOf("late") != -1;
+
     console.log(`指名売上：${uriage}`);
     console.log(`平均客単価：${tanka}`);
     console.log(`現在の給料：${kyuryo}`);
     console.log(`現在の勤務時間：${zikan}`);
+    console.log(`プラン：レイト${containLatePlan ? "含む" : "含まない"}`);
 
     // 収益計算
-    calcAndDisplayRevenue(uriage, kyuryo)
+    calcAndDisplayRevenue(uriage, kyuryo, containLatePlan)
 
     // 勤務時間計算
     calcAndDisplayWorkinghours(uriage, tanka, zikan);
 
 }
 
-function calcAndDisplayRevenue(uriage, kyuryoBefore) {
+function calcAndDisplayRevenue(uriage, kyuryoBefore, containLatePlan) {
 
     const standardIncome = calcRevenue(uriage, PLAN_STANDARD);
     const lightIncome = calcRevenue(uriage, PLAN_LIGHT);
+    const lateIncome = calcRevenue(uriage, PLAN_LATE);
 
-    const maximumIncome = Math.max(standardIncome, lightIncome);
+    let maximumIncome;
+    if (containLatePlan) {
+        // レイトプランも含めての最大を取得
+        maximumIncome = Math.max(standardIncome, lightIncome, lateIncome);
+        $("#result_detail_lateplan").show();
+    } else {
+        maximumIncome = Math.max(standardIncome, lightIncome);
+        $("#result_detail_lateplan").hide();
+    }
 
     setText("#r_income_before", kyuryoBefore.toLocaleString());
     setText("#r_income_after", maximumIncome.toLocaleString());
@@ -100,7 +114,8 @@ function calcAndDisplayRevenue(uriage, kyuryoBefore) {
     setText("#r_plan1_tsukigaku2", (PLAN_STANDARD.tsukigaku * 10000).toLocaleString());
     setText("#r_plan1_income", standardIncome.toLocaleString());
     setText("#r_plan1_uriage_ratio", PLAN_STANDARD.percent);
-    setText("#r_plan1_hpb", (PLAN_STANDARD.hpb * 10000).toLocaleString());
+    setText("#r_plan1_hpb1", PLAN_STANDARD.hpb);
+    setText("#r_plan1_hpb2", (PLAN_STANDARD.hpb * 10000).toLocaleString());
     setText("#r_plan1_uriage_ratio2", PLAN_STANDARD.percent);
     setText("#r_plan1_uriage_price", Math.floor(uriage * PLAN_STANDARD.percent / 100).toLocaleString());
 
@@ -111,9 +126,24 @@ function calcAndDisplayRevenue(uriage, kyuryoBefore) {
     setText("#r_plan2_tsukigaku2", (PLAN_LIGHT.tsukigaku * 10000).toLocaleString());
     setText("#r_plan2_income", lightIncome.toLocaleString());
     setText("#r_plan2_uriage_ratio", PLAN_LIGHT.percent);
-    setText("#r_plan2_hpb", (PLAN_LIGHT.hpb * 10000).toLocaleString());
+    setText("#r_plan2_hpb1", PLAN_LIGHT.hpb);
+    setText("#r_plan2_hpb2", (PLAN_LIGHT.hpb * 10000).toLocaleString());
     setText("#r_plan2_uriage_ratio2", PLAN_LIGHT.percent);
     setText("#r_plan2_uriage_price", Math.floor(uriage * PLAN_LIGHT.percent / 100).toLocaleString());
+
+    // レイトプラン
+    if (containLatePlan) {
+        setText("#r_plan3_name1", PLAN_LATE.name);
+        setText("#r_plan3_name2", PLAN_LATE.name);
+        setText("#r_plan3_tsukigaku1", PLAN_LATE.tsukigaku);
+        setText("#r_plan3_tsukigaku2", (PLAN_LATE.tsukigaku * 10000).toLocaleString());
+        setText("#r_plan3_income", lateIncome.toLocaleString());
+        setText("#r_plan3_uriage_ratio", PLAN_LATE.percent);
+        setText("#r_plan3_hpb1", PLAN_LATE.hpb);
+        setText("#r_plan3_hpb2", (PLAN_LATE.hpb * 10000).toLocaleString());
+        setText("#r_plan3_uriage_ratio2", PLAN_LATE.percent);
+        setText("#r_plan3_uriage_price", Math.floor(uriage * PLAN_LATE.percent / 100).toLocaleString());
+    }
 
     // グラフに反映
     revenue(kyuryoBefore, maximumIncome);
