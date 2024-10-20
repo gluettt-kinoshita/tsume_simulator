@@ -10,20 +10,34 @@ function createGraph(asis, tobe, canvasId, revenue) {
     const ctx = document.getElementById(canvasId);
 
     new Chart(ctx, {
-        type: 'bar',
         data: {
             labels: revenue ? ['現在の給与', '想定収入'] : ['現在の勤務時間', '想定勤務時間'],
-            datasets: [{
-                //label: '# of Votes',
-                labe: null,
-                data: [asis, tobe],
-                backgroundColor: [
-                    'rgba(220, 220, 220, 1)',
-                    asis > tobe ? 'rgba(88, 111, 223, 0.7)' : 'rgba(192, 92, 167, 0.44)',
-                ],
-                borderWidth: 1,
-                maxBarThickness: 100,
-            }]
+            datasets: [
+                {
+                    type: 'line',
+                    labe: null,
+                    data: [asis, tobe],
+                    borderColor: [
+                        asis > tobe ? 'rgba(88, 111, 223, 0.7)' : 'rgba(192, 92, 167, 0.44)',
+                    ],
+                    borderWidth: 5,
+                    borderDash: [5, 5], // 点線
+                    pointRadius: 0,
+                },
+                {
+                    type: 'bar',
+                    //label: '# of Votes',
+                    labe: null,
+                    data: [asis, tobe],
+                    backgroundColor: [
+                        'rgba(220, 220, 220, 1)',
+                        asis > tobe ? 'rgba(88, 111, 223, 0.7)' : 'rgba(192, 92, 167, 0.44)',
+                    ],
+                    borderWidth: 1,
+                    maxBarThickness: 100,
+                },
+
+            ]
         },
         options: {
             scales: {
