@@ -1,10 +1,10 @@
 // 客一人当たりの施術時間
 const TREATMENT_TIME = 2; // 時間
 
-// { name: プラン名, tsukigaku: 月額（万円）, hpb: HPB掲載料（万円）, percent: 売上（％） }
-const PLAN_STANDARD = { name: "スタンダードプラン", tsukigaku: 5, hpb: 3, percent: 15 };
-const PLAN_LIGHT = { name: "ライトプラン", tsukigaku: 2, hpb: 3, percent: 25 };
-const PLAN_LATE = { name: "レイトプラン", tsukigaku: 1.5, hpb: 1.5, percent: 25 };
+// { name: プラン名, tsukigaku: 月額（万円）, hpb: HPB掲載料（万円）, percent: 売上（％）, description: 説明 }
+const PLAN_STANDARD = { name: "スタンダードプラン", tsukigaku: 5, hpb: 3, percent: 15, description: "365日終日利用可" };
+const PLAN_LIGHT = { name: "ライトプラン", tsukigaku: 2, hpb: 3, percent: 25, description: "365日終日利用可" };
+const PLAN_LATE = { name: "レイトプラン", tsukigaku: 1.5, hpb: 1.5, percent: 25, description: "365日17時以降利用可" };
 
 function createGraph(asis, tobe, canvasId, revenue) {
     const ctx = document.getElementById(canvasId);
@@ -124,6 +124,7 @@ function calcAndDisplayRevenue(uriage, kyuryoBefore, containLatePlan) {
     // スタンダードプラン
     setText("#r_plan1_name1", PLAN_STANDARD.name);
     setText("#r_plan1_name2", PLAN_STANDARD.name);
+    setText("#r_plan1_description", PLAN_STANDARD.description);
     setText("#r_plan1_tsukigaku1", PLAN_STANDARD.tsukigaku);
     setText("#r_plan1_tsukigaku2", (PLAN_STANDARD.tsukigaku * 10000).toLocaleString());
     setText("#r_plan1_income", standardIncome.toLocaleString());
@@ -136,6 +137,7 @@ function calcAndDisplayRevenue(uriage, kyuryoBefore, containLatePlan) {
     // ライトプラン
     setText("#r_plan2_name1", PLAN_LIGHT.name);
     setText("#r_plan2_name2", PLAN_LIGHT.name);
+    setText("#r_plan2_description", PLAN_LIGHT.description);
     setText("#r_plan2_tsukigaku1", PLAN_LIGHT.tsukigaku);
     setText("#r_plan2_tsukigaku2", (PLAN_LIGHT.tsukigaku * 10000).toLocaleString());
     setText("#r_plan2_income", lightIncome.toLocaleString());
@@ -149,6 +151,7 @@ function calcAndDisplayRevenue(uriage, kyuryoBefore, containLatePlan) {
     if (containLatePlan) {
         setText("#r_plan3_name1", PLAN_LATE.name);
         setText("#r_plan3_name2", PLAN_LATE.name);
+        setText("#r_plan3_description", PLAN_LATE.description);
         setText("#r_plan3_tsukigaku1", PLAN_LATE.tsukigaku);
         setText("#r_plan3_tsukigaku2", (PLAN_LATE.tsukigaku * 10000).toLocaleString());
         setText("#r_plan3_income", lateIncome.toLocaleString());
@@ -167,7 +170,7 @@ function calcAndDisplayRevenue(uriage, kyuryoBefore, containLatePlan) {
  *  想定売上からプランに応じた収益を計算
  */
 function calcRevenue(uriage, plan) {
-    // { name: プラン名, tsukigaku: 月額（万円）, hpb: HPB掲載料（万円）, percent: 売上（％） }
+    // { name: プラン名, tsukigaku: 月額（万円）, hpb: HPB掲載料（万円）, percent: 売上（％）, description: 説明 }
     const revenue = uriage - (plan.tsukigaku * 10000) - (plan.hpb * 10000) - (uriage * plan.percent / 100);
     return Math.floor(revenue);
 }

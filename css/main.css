@@ -155,12 +155,21 @@ header img {
     }
 }
 
+.result_revenue_detail_description {
+    background-color: rgba(88, 111, 223, 0.7);
+    color: #ffffff;
+    border-radius: 4px;
+    /* width: 75%; */
+    margin: 0px 4px 10px 4px;
+    padding: 4px;
+    text-align: center;
+}
 .result_revenue_detail_condition {
     background-color: rgba(192, 92, 167, 0.44);
     color: #ffffff;
     border-radius: 4px;
     /* width: 75%; */
-    margin: 20px auto;
+    margin: 10px 4px;
     padding: 4px;
     text-align: center;
 }
