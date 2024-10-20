@@ -34,7 +34,7 @@ function createGraph(asis, tobe, canvasId, revenue) {
                         asis > tobe ? 'rgba(88, 111, 223, 0.7)' : 'rgba(192, 92, 167, 0.44)',
                     ],
                     borderWidth: 1,
-                    maxBarThickness: 100,
+                    maxBarThickness: 80,
                 },
 
             ]
