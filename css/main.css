@@ -76,15 +76,12 @@ header img {
         padding: 40px 20px;
     }
  }
-
+.main-input-inner dl {
+    margin-bottom: 60px;
+}
 .main-input-inner button {
     background-color: rgba(192, 92, 167, 0.44);
     color: #ffffff;
-}
-
-.main-input-plan {
-    margin-top: 48px;
-    margin-bottom: 16px;
 }
 
 .input_row {

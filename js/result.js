@@ -86,37 +86,31 @@ function loaded() {
     const kyuryo = parseInt(urlParams.get('k')); // 現在の給料
     const zikan = parseInt(urlParams.get('z')); // 現在の勤務時間
     const plan = urlParams.get('p'); // プラン
-    const containLatePlan = plan && plan.indexOf("late") != -1;
 
     console.log(`指名売上：${uriage}`);
     console.log(`平均客単価：${tanka}`);
     console.log(`現在の給料：${kyuryo}`);
     console.log(`現在の勤務時間：${zikan}`);
-    console.log(`プラン：レイト${containLatePlan ? "含む" : "含まない"}`);
 
     // 収益計算
-    calcAndDisplayRevenue(uriage, kyuryo, containLatePlan)
+    calcAndDisplayRevenue(uriage, kyuryo)
 
     // 勤務時間計算
     calcAndDisplayWorkinghours(uriage, tanka, zikan);
 
 }
 
-function calcAndDisplayRevenue(uriage, kyuryoBefore, containLatePlan) {
+function calcAndDisplayRevenue(uriage, kyuryoBefore) {
 
     const standardIncome = calcRevenue(uriage, PLAN_STANDARD);
     const lightIncome = calcRevenue(uriage, PLAN_LIGHT);
     const lateIncome = calcRevenue(uriage, PLAN_LATE);
 
-    let maximumIncome;
-    if (containLatePlan) {
-        // レイトプランも含めての最大を取得
-        maximumIncome = Math.max(standardIncome, lightIncome, lateIncome);
-        $("#result_detail_lateplan").show();
-    } else {
-        maximumIncome = Math.max(standardIncome, lightIncome);
-        $("#result_detail_lateplan").hide();
-    }
+    /*
+     * MEMO:レイトプランは時間限定のプランで他プランと比べて有利な価格になるため、
+     * 最大収益の算出にはレイトプランは加えない
+     */
+    let maximumIncome = Math.max(standardIncome, lightIncome);
 
     setText("#r_income_before", kyuryoBefore.toLocaleString());
     setText("#r_income_after", maximumIncome.toLocaleString());
@@ -148,19 +142,17 @@ function calcAndDisplayRevenue(uriage, kyuryoBefore, containLatePlan) {
     setText("#r_plan2_uriage_price", Math.floor(uriage * PLAN_LIGHT.percent / 100).toLocaleString());
 
     // レイトプラン
-    if (containLatePlan) {
-        setText("#r_plan3_name1", PLAN_LATE.name);
-        setText("#r_plan3_name2", PLAN_LATE.name);
-        setText("#r_plan3_description", PLAN_LATE.description);
-        setText("#r_plan3_tsukigaku1", PLAN_LATE.tsukigaku);
-        setText("#r_plan3_tsukigaku2", (PLAN_LATE.tsukigaku * 10000).toLocaleString());
-        setText("#r_plan3_income", lateIncome.toLocaleString());
-        setText("#r_plan3_uriage_ratio", PLAN_LATE.percent);
-        setText("#r_plan3_hpb1", PLAN_LATE.hpb);
-        setText("#r_plan3_hpb2", (PLAN_LATE.hpb * 10000).toLocaleString());
-        setText("#r_plan3_uriage_ratio2", PLAN_LATE.percent);
-        setText("#r_plan3_uriage_price", Math.floor(uriage * PLAN_LATE.percent / 100).toLocaleString());
-    }
+    setText("#r_plan3_name1", PLAN_LATE.name);
+    setText("#r_plan3_name2", PLAN_LATE.name);
+    setText("#r_plan3_description", PLAN_LATE.description);
+    setText("#r_plan3_tsukigaku1", PLAN_LATE.tsukigaku);
+    setText("#r_plan3_tsukigaku2", (PLAN_LATE.tsukigaku * 10000).toLocaleString());
+    setText("#r_plan3_income", lateIncome.toLocaleString());
+    setText("#r_plan3_uriage_ratio", PLAN_LATE.percent);
+    setText("#r_plan3_hpb1", PLAN_LATE.hpb);
+    setText("#r_plan3_hpb2", (PLAN_LATE.hpb * 10000).toLocaleString());
+    setText("#r_plan3_uriage_ratio2", PLAN_LATE.percent);
+    setText("#r_plan3_uriage_price", Math.floor(uriage * PLAN_LATE.percent / 100).toLocaleString());
 
     // グラフに反映
     revenue(kyuryoBefore, maximumIncome);
