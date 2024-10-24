@@ -106,7 +106,9 @@ header img {
 /* シミュレーション結果 */
 .main-result {
     padding: 60px 20px;
-    background-image: url("../img/back1.jpg");
+    background-image: url("../img/back1.png");
+    background-size: 500px;
+    background-repeat: repeat;
 }
 .main-result-inner {
     padding: 40px 0px;
